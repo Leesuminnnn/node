@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel start:server start:client",
-    "start:server": "cd server && nodemon server",
-    "start:client": "cd client && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cd server && nodemon server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
   },
   "author": "",
   "license": "ISC",
