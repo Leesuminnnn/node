@@ -8,14 +8,14 @@ router.get("/", (req, res) => {
 });
 
 router.get('/select', function(req, res) {
-    db.query('select * from customer', (error, results, fields) =>{
-        if(!err){
-            res.send(rows); // responses send rows
+    db.query('select * from customer', function(err, rows, fields) {
+        if(!err) {
+          res.send(rows); // responses send rows
         } else {
-            console.log("err : " + err);
-            res.send(err);
+          console.log("err : " + err);
+          res.send(err);  // response send err
         }
     });
-})
+});
 
 module.exports = router;

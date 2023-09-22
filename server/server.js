@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
+var cors = require('cors')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const logger = require('morgan'); // morgan 미들웨어 가져오기
 const test = require('./Router/test');
 var testRouter = require('../server/Router/test');
 app.use('/api', test);
-
+app.use(cors());
 const port = 3002; //node 서버가 사용할 포트 번호, 리액트의 포트번호(3000)와 충돌하지 않게 다른 번호로 할당
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
