@@ -56,14 +56,13 @@ router.get("/data", function(req, res) {
   'CAST(m_id AS CHAR) AS id, ' +
   'CAST(m_pw AS CHAR) AS pw ' +
   'from customer', function(err, rows, fields) {
-
     if(!err) {
       // 결과를 문자열로 변환
       const results = rows.map(row => ({
         // 문자열로 변환하기 전에 해당 컬럼이 null인지 확인
         // 만약 해당 컬럼이 null이라면 문자열로 반환하지 않고 그대로 null을 유지
-        m_id: row.m_id ? row.m_id.toString() : null,
-        m_pw: row.m_pw ? row.m_pw.toString() : null,
+        id: row.m_id ? row.m_id.toString() : null,
+        pw: row.m_pw ? row.m_pw.toString() : null,
       }));
       res.send(results);
     } else {

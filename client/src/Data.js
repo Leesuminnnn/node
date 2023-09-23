@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class App extends Component {
+class Data extends Component {
   state = {
     data: [],
   };
@@ -26,7 +26,7 @@ class App extends Component {
         <h1>Received Data</h1>
         <ul>
           {this.state.data.map(item => (
-            <li key={item.id}>{item.name}</li>
+            <li key={item.id}>{item.id}</li>
           ))}
         </ul>
       </div>
@@ -34,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Data;
