@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Data from './Data';
+import Router from './Router';
 import reportWebVitals from './reportWebVitals';
+
+//ReactDOM.render(<Router />, document.getElementById('root'));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Data />
+    <Router />
   </React.StrictMode>
 );
 

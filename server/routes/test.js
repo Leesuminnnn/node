@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../database/connect/maria');
+const ctrl = require("./home/home.ctrl");
 
 function formatDateTime(dateTime) {
   const date = dateTime.toISOString().split('T')[0];
@@ -8,9 +9,9 @@ function formatDateTime(dateTime) {
   return `${date} ${time}`;
 }
 
-router.get("/", (req, res) => {
-    res.send({test : "hi"});
-});
+router.get("/", ctrl.home);
+
+router.get("/login", ctrl.login);
 
 router.get('/select', function(req, res) {
     db.query('SELECT ' +
