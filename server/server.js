@@ -7,12 +7,14 @@ var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const logger = require('morgan'); // morgan 미들웨어 가져오기
-const test = require('./routes/test');
+const test = require('./src/routes/test');
 
 // 라우팅
-const home = require("./routes/home");
+const home = require("./src/routes/home");
+
 app.use('/', test);
 app.use(cors());
+app.use(express.static(`${__dirname}/src/public`));
 
 
 // maria DB connet
@@ -20,7 +22,7 @@ const maria = require('./database/connect/maria');
 maria.connect();
 
 // view engine setup
-app.set('views', path.join(__dirname, '/routes'));
+app.set('views', path.join(__dirname, './src/routes'));
 app.set('view engine', 'ejs');
 
 

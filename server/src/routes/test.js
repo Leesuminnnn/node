@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../database/connect/maria');
+const db = require('../../database/connect/maria');
 const ctrl = require("./home/home.ctrl");
 
 function formatDateTime(dateTime) {
