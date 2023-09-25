@@ -7,14 +7,17 @@ var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const logger = require('morgan'); // morgan 미들웨어 가져오기
-const test = require('./src/routes/test');
 
 // 라우팅
-const home = require("./src/routes/home");
+const test = require('./src/routes/test');
 
 app.use('/', test);
 app.use(cors());
 app.use(express.static(`${__dirname}/src/public`));
+app.use(express.json());
+// URL을 통해 전달되는 데이터에 한글, 공백 등과 같은 문자가 포함될 경우 제대로 인식되지 않는 문제 해결
+app.use(express.urlencoded({extended: true}));
+
 
 
 // maria DB connet
@@ -27,13 +30,8 @@ app.set('view engine', 'ejs');
 
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use("/", home);
 
 
 // catch 404 and forward to error handler

@@ -2,16 +2,15 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../database/connect/maria');
 const ctrl = require("./home/home.ctrl");
-
 function formatDateTime(dateTime) {
   const date = dateTime.toISOString().split('T')[0];
   const time = dateTime.toTimeString().split(' ')[0];
   return `${date} ${time}`;
 }
 
-router.get("/", ctrl.home);
-
-router.get("/login", ctrl.login);
+router.get("/", ctrl.output.home);
+router.get("/login", ctrl.output.login);
+router.post("/login", ctrl.process.login);
 
 router.get('/select', function(req, res) {
     db.query('SELECT ' +
