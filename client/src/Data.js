@@ -25,8 +25,8 @@ class Data extends Component {
       <div>
         <h1>Received Data</h1>
         <ul>
-          {this.state.data.map(item => (
-            <li key={item.id}>{item.id}</li>
+          {this.state.data.map((item, index) => (
+            <li key={index}>{item.m_id}</li>
           ))}
         </ul>
       </div>
