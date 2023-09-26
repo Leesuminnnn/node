@@ -1,28 +1,38 @@
 "use strict";
+
 const id = document.querySelector("#id"), 
-      // #id: 태그에 id로 부여되어있는 값을 가져오라는 명령
     password = document.querySelector("#pwd"),
-      // #password: 태그에 password로 부여되어있는 값을 가져오라는 명령
     loginButton = document.querySelector("button");
 
 loginButton.addEventListener("click", login);
 
 function login() {
-    const request = {
+    const req = {
         id : id.value,
         password : password.value,
     };
 
-    // console.log(request);
-    console.log(JSON.stringify(request));
+    // console.log(req);
+    console.log(JSON.stringify(req));
 
     fetch('/login',{
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(request)
+        body: JSON.stringify(req),
       
         // object를 문자열로 바꿔주어 JSON 형태로 만들어준다
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        // if (res.success) {
+        //     location.href = "/";
+        // } else {
+        //     alert(res.msg);
+        // }
+      })
+      .catch((err) => {
+        console.error(new Error("로그인 중 에러 발생"));
       });
 }
