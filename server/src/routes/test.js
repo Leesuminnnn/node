@@ -1,12 +1,19 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const db = require('../../database/connect/maria');
 const ctrl = require("./home/home.ctrl");
+var cors = require('cors');
 function formatDateTime(dateTime) {
   const date = dateTime.toISOString().split('T')[0];
   const time = dateTime.toTimeString().split(' ')[0];
   return `${date} ${time}`;
 }
+
+app.use(cors());
+app.use(express.json());
+// URL을 통해 전달되는 데이터에 한글, 공백 등과 같은 문자가 포함될 경우 제대로 인식되지 않는 문제 해결
+app.use(express.urlencoded({extended: true}));
 
 router.get("/", ctrl.output.home);
 router.get("/login", ctrl.output.login);

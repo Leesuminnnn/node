@@ -25,7 +25,7 @@ const maria = require('./database/connect/maria');
 maria.connect();
 
 // view engine setup
-app.set('views', path.join(__dirname, './src/routes'));
+app.set('views', `${__dirname}\\src\\views`);
 app.set('view engine', 'ejs');
 
 
