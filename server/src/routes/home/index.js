@@ -74,6 +74,7 @@ router.get("/data", function(req, res) {
         m_id: row.m_id ? row.m_id.toString() : null,
         m_pw: row.m_pw ? row.m_pw.toString() : null,
       }));
+      console.log(results);
       res.json(results);    // 응답 객체에 json형식으로 데이터를 보내야함
     } else {
       console.log("err : " + err);
