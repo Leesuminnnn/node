@@ -6,9 +6,12 @@ const output = {
      home: (req,res) => {
         res.render("index");
     },    
-    login:  (request,res) => {
+    login:  (req,res) => {
         res.render("login");
     },
+    register: (req, res) => {
+        res.render("register");
+    }
 };
 
 
