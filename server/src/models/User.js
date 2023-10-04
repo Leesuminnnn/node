@@ -9,15 +9,32 @@ class User {
 
     async login () {
         const client = this.body;
-        const {id, password} = await UserStorage.getUserInfo(client.id);
+        try{
+            
+            const {id, password} = await UserStorage.getUserInfo(client.id);
+            // console.log(id);     // buffer
+            // console.log(password);       //buffer
+            const idstring = id.toString();
+            const pwstring = password.toString();
+            console.log(idstring);
+            console.log(pwstring);
+            console.log(client.id);     // test3
+            console.log(client.password);       // 1234
 
-        if (id) {
-            if ( id === client.id && password === client.password) {
-                return { success: true };
+            if (id) {
+
+                const savedPassword = password.toString();
+                // console.log(savedPassword);
+                if ( idstring === client.id && pwstring === client.password) {
+                    return { success: true };
+                }
+                return {success: false, msg: "비밀번호가 틀렸습니다." };
             }
-            return {success: false, msg: "비밀번호가 틀렸습니다." };
+            return { success:false, msg: "존재하지 않는 아이디입니다." }
+        }catch (err) {
+            return { success:false, msg: "로그인 중 오류가 발생했습니다." };
         }
-        return { success:false, msg: "존재하지 않는 아이디입니다." }
+        
     }
 
     async register () {

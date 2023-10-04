@@ -1,8 +1,8 @@
 "ues strict";
 
 const app = require("../server");
-const port = 3002;
+const PORT = process.env.PORT || 3002;
 
-app.listen(port, () => {
-    console.log(`서버 가동중.. ${port}`);
+app.listen(PORT, () => {
+    console.log(`서버 가동중.. ${PORT}`);
 });

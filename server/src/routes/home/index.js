@@ -53,6 +53,7 @@ router.get('/select', function(req, res) {
             m_de: row.m_de ? row.m_de.toString() : null,
             m_regdate: row.m_regdate ? formatDateTime(row.m_regdate) : null, // 날짜 포맷 변경
           }));
+          console.log(results);
           res.send(results);
         } else {
           console.log("err : " + err);
@@ -64,7 +65,8 @@ router.get('/select', function(req, res) {
 router.get("/data", function(req, res) {
   db.query('select ' +
   'CAST(m_id AS CHAR) AS m_id, ' +
-  'CAST(m_pw AS CHAR) AS m_pw ' +
+  'CAST(m_pw AS CHAR) AS m_pw, ' +
+  'CAST(m_name AS CHAR) AS m_name ' +
   'from customer', function(err, rows, fields) {
     if(!err) {
       // 결과를 문자열로 변환
@@ -73,6 +75,7 @@ router.get("/data", function(req, res) {
         // 만약 해당 컬럼이 null이라면 문자열로 반환하지 않고 그대로 null을 유지
         m_id: row.m_id ? row.m_id.toString() : null,
         m_pw: row.m_pw ? row.m_pw.toString() : null,
+        m_name: row.m_name ? row.m_name.toString() : null,
       }));
       console.log(results);
       res.json(results);    // 응답 객체에 json형식으로 데이터를 보내야함
@@ -83,4 +86,27 @@ router.get("/data", function(req, res) {
   });
 });
 
+router.get("/data2", function(req, res) {
+  db.query('select ' +
+  'id, ' +
+  'password, ' +
+  'name ' +
+  'from users', function(err, rows, fields) {
+    if(!err) {
+      // 결과를 문자열로 변환
+      const results = rows.map(row => ({
+        // 문자열로 변환하기 전에 해당 컬럼이 null인지 확인
+        // 만약 해당 컬럼이 null이라면 문자열로 반환하지 않고 그대로 null을 유지
+        id: row.id ? row.id.toString() : null,
+        password: row.password ? row.password.toString() : null,
+        name: row.name ? row.name.toString() : null,
+      }));
+      console.log(results);
+      res.json(results);    // 응답 객체에 json형식으로 데이터를 보내야함
+    } else {
+      console.log("err : " + err);
+      res.send(err);  // response send err
+    }
+  });
+});
 module.exports = router;

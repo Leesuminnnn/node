@@ -55,23 +55,12 @@ class UserStorage{
         // .catch(console.error);
 
         return new Promise((resolve, reject) => {
-            db.query("select * from users where id = ?", [id], (err, data) => {
-                // if(err) reject(err);
+            const query = "SELECT * FROM users WHERE id = ?;";
+            db.query(query, [id], (err, data) => {
                 
-                // console.log(data[0]);
-                // resolve(data[0]);
-
-                if (err) {
-                    reject(err);
-                } else if (data && data.length > 0) {
-                    const user = data[0];
-                    // Assuming that the 'name' column is correctly encoded
-                    user.name = user.name ? user.name.toString() : null;
-                    console.log(user);
-                    resolve(user);
-                } else {
-                    resolve(null); // User not found
-                }
+                if (err) reject(`${err}`);
+                resolve(data[0]);
+                
             });
         });
         
@@ -91,6 +80,16 @@ class UserStorage{
         // // 데이터 추가
         // fs.writeFile("./server/src/databases/users.json", JSON.stringify(users));
         // return { success: true};
+        return new Promise((resolve, reject) => {
+            const query = "INSERT INTO users(id, name, password) VALUES(?, ?, ?);";
+            db.query(query, 
+                [userInfo.id, userInfo.name, userInfo.password],
+                (err) => {
+                if (err) reject(`${err}`);      // 실제 서비스 시에는 변경해야함
+                resolve({ success: true });
+                
+            });
+        });
     }
 }
 

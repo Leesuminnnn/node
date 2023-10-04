@@ -1,22 +1,23 @@
-const maria = require('mysql2');
+const mysql = require('mysql2');
 
-const conn = maria.createConnection({
-    host: 'csworktools.cafe24.com',
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
     charset: 'utf8mb4',
-    port: 3306,
-    user: 'csworktools',
-    password: 'cs12365478!@',
-    database: 'csworktools',
+    port: '3306',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    connectionLimit: 10, // Adjust as needed
     multipleStatements: true,
-    typeCast: function (field, next) {
-        if (field.type == 'VAR_STRING') {
-            return field.string();
-        }
-        return next();
-    }
+    // typeCast: function (field, next) {   // 해당 코드 주석풀면 한글 깨짐!!
+    //     if (field.type == 'VAR_STRING') {
+    //         return field.string();
+    //     }
+    //     return next();
+    // }
 });
 
-conn.connect((err) => {
+db.connect((err) => {
     if (err) {
       console.error('Error connecting to MySQL:', err);
       return;
@@ -24,4 +25,4 @@ conn.connect((err) => {
     console.log('Connected to MySQL');
   });
 
-module.exports = conn;
+module.exports = db;

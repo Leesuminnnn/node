@@ -2,19 +2,20 @@
 
 const id = document.querySelector("#id"), 
     password = document.querySelector("#pwd"),
-    loginButton = document.querySelector("button");
+    loginButton = document.querySelector("#button");
 
 loginButton.addEventListener("click", login);
 
 function login() {
+    if (!id.value) return alert("아이디를 입력해 주세요.");
     const req = {
         id : id.value,
         password : password.value,
     };
 
     // console.log(req);
+    console.log("여기");
     console.log(JSON.stringify(req));
-
     fetch('/login',{
         method: "POST",
         headers: {

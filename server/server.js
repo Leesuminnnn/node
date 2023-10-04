@@ -5,6 +5,14 @@ const express = require('express');
 const app = express();
 var cors = require('cors');
 var path = require('path');
+//import dotenv from "dotenv";
+const dotenv = require("dotenv");
+dotenv.config();
+// console.log(process.env.PORT);
+// console.log(process.env.DB_HOST);
+// console.log(process.env.DB_USER);
+// console.log(process.env.DB_PASSWORD);
+// console.log(process.env.DB_DATABASE);
 
 // 라우팅
 const home = require('./src/routes/home');
