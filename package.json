@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "app-root-path": "^3.1.0",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -23,6 +24,7 @@
     "mysql2": "^3.6.1",
     "nodemon": "^3.0.1",
     "npm-run-all": "^4.1.5",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "winston": "^3.10.0"
   }
 }
