@@ -57,7 +57,7 @@ class UserStorage{
         return new Promise((resolve, reject) => {
             const query = "SELECT * FROM users WHERE id = ?;";
             db.query(query, [id], (err, data) => {
-                
+                console.log(data[0]);
                 if (err) reject(`${err}`);
                 else resolve(data[0]);
                 
@@ -81,7 +81,7 @@ class UserStorage{
         // fs.writeFile("./server/src/databases/users.json", JSON.stringify(users));
         // return { success: true};
         return new Promise((resolve, reject) => {
-            const query = "INSERT INTO usersa(id, name, password) VALUES(?, ?, ?);";
+            const query = "INSERT INTO users(id, name, password) VALUES(?, ?, ?);";
             db.query(query, 
                 [userInfo.id, userInfo.name, userInfo.password],
                 (err) => {
