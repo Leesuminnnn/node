@@ -32,7 +32,7 @@ class User {
             }
             return { success:false, msg: "존재하지 않는 아이디입니다." }
         }catch (err) {
-            return { success:false, msg: "로그인 중 오류가 발생했습니다." };
+            return { success:false, err };
         }
         
     }
@@ -43,7 +43,7 @@ class User {
             const response = await UserStorage.save(client);
             return response;
         } catch (err) {
-            return { success: false, msg: err }
+            return { success: false, err }
         }
         
     }

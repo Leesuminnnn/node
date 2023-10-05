@@ -59,7 +59,7 @@ class UserStorage{
             db.query(query, [id], (err, data) => {
                 
                 if (err) reject(`${err}`);
-                resolve(data[0]);
+                else resolve(data[0]);
                 
             });
         });
@@ -81,12 +81,12 @@ class UserStorage{
         // fs.writeFile("./server/src/databases/users.json", JSON.stringify(users));
         // return { success: true};
         return new Promise((resolve, reject) => {
-            const query = "INSERT INTO users(id, name, password) VALUES(?, ?, ?);";
+            const query = "INSERT INTO usersa(id, name, password) VALUES(?, ?, ?);";
             db.query(query, 
                 [userInfo.id, userInfo.name, userInfo.password],
                 (err) => {
                 if (err) reject(`${err}`);      // 실제 서비스 시에는 변경해야함
-                resolve({ success: true });
+                else resolve({ success: true });
                 
             });
         });
