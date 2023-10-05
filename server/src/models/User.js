@@ -16,18 +16,18 @@ class User {
             console.log("user.password : "+password);
             // console.log(id);     // buffer
             // console.log(password);       //buffer
-            const idstring = id.toString();
-            const pwstring = password.toString();
-            console.log("idstring "+idstring);
-            console.log("pwstring "+pwstring);
+            // const idstring = id.toString();
+            // const pwstring = password.toString();
+            // console.log("idstring "+idstring);
+            // console.log("pwstring "+pwstring);
             console.log(client.id);     // test3
             console.log(client.password);       // 1234
 
             if (id) {
 
-                const savedPassword = password.toString();
-                console.log(savedPassword);
-                if ( idstring === client.id && pwstring === client.password) {
+                // const savedPassword = password.toString();
+                // console.log(savedPassword);
+                if ( id === client.id && password === client.password) {
                     return { success: true };
                 }
                 return {success: false, msg: "비밀번호가 틀렸습니다." };
