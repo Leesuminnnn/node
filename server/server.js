@@ -8,7 +8,6 @@ var path = require('path');
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const logger = require("./src/config/logger")
-const accessLogStream = require("./database/connect/log")
 
 const app = express();
 dotenv.config();
