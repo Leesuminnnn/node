@@ -20,8 +20,6 @@ dotenv.config();
 // 라우팅
 const home = require('./src/routes/home');
 
-const logger = require("./src/config/logger")
-logger.log("error", "Hello.");
 
 // view engine setup
 app.set('views', path.join(__dirname,'src/views'));
