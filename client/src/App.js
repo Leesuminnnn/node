@@ -1,28 +1,22 @@
-import './App.css';
-import axios from "axios";
-import {useEffect} from "react";
-
-
-
+import React from "react";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Counter from "./pages/Counter";
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  const callApi = async () => {
-    axios.get('/api')
-    .then((res) => {
-      console.log(res.data.test)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  };
-
-  useEffect(() => {
-    callApi();
-  }, []);
-
   return (
-    <div>여기는 루트입니다</div>
-
+    <div className="App">
+      <nav>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link> |{" "}
+        <Link to="/counter">Counter</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/counter" element={<Counter />} />
+      </Routes>
+    </div>
   );
 }
 

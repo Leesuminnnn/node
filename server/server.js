@@ -7,7 +7,7 @@ var path = require('path');
 //import dotenv from "dotenv";
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const logger = require("./src/config/logger")
+const logger = require("./src/config/logger");
 
 const app = express();
 dotenv.config();
@@ -19,8 +19,7 @@ dotenv.config();
 
 // 라우팅
 const home = require('./src/routes/home');
-
-
+app.use('/', home);   // use -> 미들 웨어를 등록해주는 메서드
 // view engine setup
 app.set('views', path.join(__dirname,'src/views'));
 app.set('view engine', 'ejs');
@@ -32,7 +31,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(morgan("dev"));
 app.use(morgan("tiny", { stream: logger.stream }));
 
-app.use('/', home);   // use -> 미들 웨어를 등록해주는 메서드
+
 // maria DB connet
 const maria = require('./database/connect/maria');
 maria.connect();
