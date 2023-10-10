@@ -3,53 +3,41 @@
 const UserStorage = require("./UserStorage");
 
 class User {
-    constructor(body){
-        this.body = body;
-    }
+  constructor(body) {
+    this.body = body;
+  }
 
-    async login () {
-        const client = this.body;
-        try{
-            
-            const { id, password } = await UserStorage.getUserInfo(client.id);
-            console.log("user.id : "+id);
-            console.log("user.password : "+password);
-            // console.log(id);     // buffer
-            // console.log(password);       //buffer
-            // const idstring = id.toString();
-            // const pwstring = password.toString();
-            // console.log("idstring "+idstring);
-            // console.log("pwstring "+pwstring);
-            console.log(client.id);     // test3
-            console.log(client.password);       // 1234
+  async login() {
+    const client = this.body;
+    try {
+      const user = await UserStorage.getUserInfo(client.id);
+      console.log("user.id : " + user.id);
+      console.log("user.password : " + user.password);
 
-            if (id) {
+      console.log(client.id);
+      console.log(client.password);
 
-                // const savedPassword = password.toString();
-                // console.log(savedPassword);
-                if ( id === client.id && password === client.password) {
-                    return { success: true };
-                }
-                return {success: false, msg: "비밀번호가 틀렸습니다." };
-            }
-            return { success:false, msg: "존재하지 않는 아이디입니다." }
-        }catch (err) {
-            return { success:false, msg: "로그인 중 오류가 발생했습니다." };
+      if (user) {
+        if (user.id === client.id && user.password === client.password) {
+          return { success: true };
         }
-        
+        return { success: false, msg: "비밀번호가 틀렸습니다." };
+      }
+      return { success: false, msg: "존재하지 않는 아이디입니다." };
+    } catch (err) {
+      return { success: false, msg: err };
     }
+  }
 
-    async register () {
-        const client = this.body
-        try {
-            const response = await UserStorage.save(client);
-            return response;
-        } catch (err) {
-            return { success: false, err }
-        }
-        
+  async register() {
+    const client = this.body;
+    try {
+      const response = await UserStorage.save(client);
+      return response;
+    } catch (err) {
+      return { success: false, err };
     }
-
+  }
 }
 
 module.exports = User;

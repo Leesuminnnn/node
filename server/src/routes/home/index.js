@@ -25,6 +25,7 @@ router.get("/apidata/sales/:apikey/:year", ctrl2.output.sales);
 
 router.post("/login", ctrl.process.login);
 router.post("/register", ctrl.process.register);
+router.post("/apidata/users/:apikey/:type", ctrl2.process.users);
 
 router.get("/select", function (req, res) {
   db.query(
@@ -117,5 +118,9 @@ router.get("/data2", function (req, res) {
       }
     }
   );
+});
+
+router.post("/data2", function (req, res) {
+  db.query("insert into users (id, name, password) values (");
 });
 module.exports = router;
